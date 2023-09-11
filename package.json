@@ -1,0 +1,19 @@
+{
+  "name": "eduaidafrica",
+  "version": "1.0.0",
+  "description": "Sponsorship Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bsakwa/EduAidAfrica.git"
+  },
+  "author": "Brian Sakwa, Nwodo Thomas, Eric Obeng, Usaamah Ishola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bsakwa/EduAidAfrica/issues"
+  },
+  "homepage": "https://github.com/Bsakwa/EduAidAfrica#readme"
+}
