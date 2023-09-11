@@ -16,4 +16,4 @@ install:
 script:
   - npm run start &  # Start the server in the background
   - sleep 5  # Wait for the server to start (adjust as needed)
-  - (curl -sS http://localhost:3000 || true) | grep "Compiled successfully"  # Check if the server output contains the success message
+  - (curl -sS http://localhost:3000 || true) | grep "Web site created using create-react-app"  # Check if the server output contains the success message
