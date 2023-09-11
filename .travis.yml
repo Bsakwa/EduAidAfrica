@@ -12,5 +12,8 @@ before_install:
 install:
   - npm install
 
+# In the script section, start the server and use a flag to indicate success
 script:
-  - npm run start
+  - npm run start &  # Start the server in the background
+  - sleep 5  # Wait for the server to start (adjust as needed)
+  - (curl -sS http://localhost:3000 || true) | grep "Compiled successfully"  # Check if the server output contains the success message
