@@ -3,24 +3,17 @@
  */
 
 const express = require('express');
-const mongoose = require('mongoose');
+const connectToDatabase = require('./db'); // Import the database configuration
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// MongoDB connection setup
-mongoose.connect('mongodb://localhost/eduaid-africa', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+// Connect to the database
+connectToDatabase();
 
-// Express.js middleware and routes go here
+// ... Define your routes, controllers, and middleware ...
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
