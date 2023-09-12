@@ -4,9 +4,9 @@
   "description": "Sponsorship Web Application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "dev": "concurrently \"npm start\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brian Sakwa, Nwodo Thomas, Eric Obeng, Usaamah Ishola",
