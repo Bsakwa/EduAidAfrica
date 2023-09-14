@@ -3,15 +3,19 @@
  */
 
 const express = require('express');
-const connectToDatabase = require('./db'); // Import the database configuration
+const routes = require('./routes/index');
+const connectToDatabase = require('./db'); 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // Connect to the database
-connectToDatabase();
+const db = connectToDatabase();
+app.set('db', db);
 
 // ... Define your routes, controllers, and middleware ...
+app.use(express.json()); // Parse JSON bodies
+routes(app);
 
 // Start the server
 app.listen(PORT, () => {
