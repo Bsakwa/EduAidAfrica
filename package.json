@@ -2,18 +2,33 @@
   "name": "eduaidafrica",
   "version": "1.0.0",
   "description": "Sponsorship Web Application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server/server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm start\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bsakwa/EduAidAfrica.git"
   },
   "author": "Brian Sakwa, Nwodo Thomas, Eric Obeng, Usaamah Ishola",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Bsakwa/EduAidAfrica/issues"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "axios": "^0.24.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "react-router-dom": "^5.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   },
   "homepage": "https://github.com/Bsakwa/EduAidAfrica#readme"
 }
