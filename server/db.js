@@ -20,6 +20,8 @@ const connectToDatabase = () => {
   db.once('open', () => {
     console.log('Connected to MongoDB');
   });
+
+  return db;
 };
 
 module.exports = connectToDatabase;
