@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <header className='flex flex-row justify-between items-center px-8 py-4 bg-blue-200 border-none'>
+    <header className='flex flex-row z-2 absolute w-full justify-between items-center px-8 py-4 bg-blue-200 border-none'>
       <div className="logo w-full h-full">
             <img src={logo} alt="" width={50} />
       </div>
-            <nav className='w-full h-full flex text-white font-semibold flex-row justify-between items-center text-body font-semibold'>
+            <nav className='w-full h-full flex text-white  flex-row justify-between items-center text-body font-semibold'>
                   <NavLink className='nav_list mr-4' to="/">Home</NavLink>
                   <NavLink className='nav_list mr-4' to="/learners"> Scholarship Type</NavLink>
                   <NavLink className='nav_list mr-4' to="/educators">About Us</NavLink>
