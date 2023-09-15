@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <header className='flex flex-row z-2 absolute w-full justify-between items-center px-8 py-4 bg-blue-200 border-none'>
-      <div className="logo w-full h-full">
-            <img src={logo} alt="" width={50} />
+    <header className='flex flex-row z-2 absolute w-full justify-between items-center px-8 py-4 bg-gradient border-none'>
+      <div className="logo flex gap-4 items-center w-full h-full">
+            <img src={logo} alt="" width={50} /><span className='font-lobster text-[1.5rem]'> <span className='text-red-500'>EduAid</span>Africa</span>
       </div>
             <nav className='w-full h-full flex text-white  flex-row justify-between items-center text-body font-semibold'>
                   <NavLink className='nav_list mr-4' to="/">Home</NavLink>

@@ -9,3 +9,14 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
+fieldset{
+      border: 2px solid black ;
+      border-radius: 20px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+      margin: 2px 4px;
+      width: 90%;
+}

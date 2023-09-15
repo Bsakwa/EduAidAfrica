@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+      'gradient': 'linear-gradient(98deg, #6eabf0 31%, #60d6e8)',
+    },
       fontFamily: {
         lobster: ['Lobster', 'cursive'],
         'nunito-sans': ['Nunito Sans', 'sans-serif'],
