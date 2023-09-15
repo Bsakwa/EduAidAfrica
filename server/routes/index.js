@@ -3,13 +3,17 @@
  */
 
 const express = require('express');
+const userRoutes = require('./userRoutes'); 
 const AppController = require('../controllers/AppController');
 
 function routes(app) {
   const router = express.Router();
 
   // Attach the router to the app
-  app.use('/', router); // Prefix routes with '/api'
+  app.use('/api', router);
+
+  // Include user-related routes
+  userRoutes(router);
 
   // Define an endpoint to check the database connection
   router.get('/check-db', AppController.checkDatabase);
