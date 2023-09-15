@@ -18,6 +18,6 @@ app.use(express.json()); // Parse JSON bodies
 routes(app);
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
