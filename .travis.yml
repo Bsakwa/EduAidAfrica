@@ -1,19 +1,29 @@
 language: node_js
 node_js:
-  - "16"
+  - 18
 
-cache:
-  directories:
-    - client/node_modules
+# Define the stages
+stages:
+  - test
 
-before_install:
-  - cd client
+jobs:
+  include:
+    - stage: test
+      name: "Test Server"
+      before_script:
+        - cd server
+      script:
+        - npm install
+        - npm run start-server & # Start the server in the background
+        - sleep 10 # Wait for the server to start (adjust this time as needed)
+        - npm run check-db # Use your check-db script to verify server and database connection
 
-install:
-  - npm install
-
-# In the script section, start the server and use a flag to indicate success
-script:
-  - npm run start &  # Start the server in the background
-  - sleep 5  # Wait for the server to start (adjust as needed)
-  - (curl -sS http://localhost:3000 || true) | grep "Web site created using create-react-app"  # Check if the server output contains the success message
+    - stage: test
+      name: "Test Client"
+      before_script:
+        - cd client
+      script:
+        - npm install
+        - npm run dev & # Start the Vite server in the background
+        - sleep 10 # Wait for the Vite server to start (adjust this time as needed)
+        - npm run check-client # Use your script to verify the client

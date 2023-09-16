@@ -14,12 +14,27 @@ async function createUser(req, res) {
     // Extract user data from the request body
     const { username, email, password } = req.body;
 
-    // Validate user input using Joi
-    const { error } = userSchema.validate({ username, email, password });
-
-    if (error) {
-      return res.status(400).json({ message: error.details[0].message });
+    // Check if email and password are provided
+    if (!email) {
+      return res.status(400).json({ message: 'Missing email' });
     }
+
+    if (!password) {
+      return res.status(400).json({ message: 'Missing password' });
+    }
+
+    // Check if the email already exists in the database
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already exists' });
+    }
+
+    // Validate user input using Joi (if needed)
+    // const { error } = userSchema.validate({ username, email, password });
+    // if (error) {
+    //   return res.status(400).json({ message: error.details[0].message });
+    // }
 
     // Validate the email using the custom function
     if (!isValidEmail(email)) {
@@ -33,7 +48,7 @@ async function createUser(req, res) {
     const newUser = new User({
       username,
       email,
-      password: hashedPassword, 
+      password: hashedPassword,
     });
 
     // Save the user to the database with Mongoose as the database library
@@ -46,6 +61,7 @@ async function createUser(req, res) {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 
 // Controller function to get a user by ID
 async function getUserById(req, res) {
