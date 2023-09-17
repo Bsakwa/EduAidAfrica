@@ -1,9 +1,10 @@
 /*
  * Implements user input validation using joi
- * run npm install joi
+ * run npm install joi, npm install validator
  */
 
 const Joi = require('joi');
+const validator = require('validator');
 
 // Joi schema for user input validation
 const userSchema = Joi.object({
