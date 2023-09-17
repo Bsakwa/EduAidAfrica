@@ -15,7 +15,7 @@ const Login_Hero = () => {
   };
 
   const [formData, setFormData] = useState({
-    fullName: '',
+    UserName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -51,8 +51,8 @@ const Login_Hero = () => {
                 <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">Register Now</h1>
                 <form action="" className='w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]' onSubmit={handleSubmit}>
                   <fieldset className='w-full p-2'>
-                    <legend className='text-[0.8rem] font-semibold capitalize'>Full Name</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type="text" placeholder='Barry Argent' name="fullName" value={formData.fullName} onChange={handleInputChange} />
+                    <legend className='text-[0.8rem] font-semibold capitalize'>UserName</legend>
+                    <input className='p-1 text-[0.8rem] overflow-hidden' type="text" placeholder='Barry Argent' name=" UserName" value={formData. UserName} onChange={handleInputChange} />
                   </fieldset>
                   <fieldset className='w-full p-2'>
                     <legend className='text-[0.8rem] font-semibold capitalize'>Email</legend>
@@ -72,25 +72,11 @@ const Login_Hero = () => {
                       )}
                     </div>
                   </span>
-                  <fieldset className='w-full p-2'>
-                    <legend className='text-[0.8rem] font-semibold capitalize'>Confirm Password</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type="password" placeholder='Confirm password' name="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} />
-                  </fieldset>
-                  <span className='flex items-center relative gap-1 text-[0.7rem] font-medium'>
-                    Show password
-                    <div className='icons absolute right-1'>
-                      {passwordVisible ? (
-                        <AiOutlineEyeInvisible className='text-[0.8rem]' onClick={togglePasswordVisibility} />
-                      ) : (
-                        <AiOutlineEye className='text-[0.8rem]' onClick={togglePasswordVisibility} />
-                      )}
-                    </div>
-                  </span>
                   <div className="flex gap-2">
                     <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">
                       Register
                     </button>
-                    <button type="button" onClick={() => setFormData({ ...formData, fullName: '', email: '', password: '', confirmPassword: '' })} className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full">
+                    <button type="button" onClick={() => setFormData({ ...formData,  UserName: '', email: '', password: '', confirmPassword: '' })} className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full">
                       Clear Form
                     </button>
                   </div>
