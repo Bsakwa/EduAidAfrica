@@ -1,8 +1,9 @@
 import React from 'react'
+import Homeslide from './hs/hs'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div><Homeslide/></div>
   )
 }
 

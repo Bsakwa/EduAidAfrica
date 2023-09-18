@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
 
 const Login_Hero = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -21,6 +22,13 @@ const Login_Hero = () => {
     confirmPassword: '',
   });
 
+  const [formErrors, setFormErrors] = useState({
+    UserName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -31,7 +39,41 @@ const Login_Hero = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+
+    const errors = {};
+    
+    // Validation logic
+    if (formData.UserName.trim() === '') {
+      errors.UserName = 'Username is required.';
+    }
+
+    if (formData.email.trim() === '') {
+      errors.email = 'Email is required.';
+    }
+
+    if (formData.password.trim() === '') {
+      errors.password = 'Password is required.';
+    } else if (formData.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long.';
+    } else if (!/[A-Z]/.test(formData.password)) {
+      errors.password = 'Password must contain at least one uppercase letter.';
+    } else if (!/[a-z]/.test(formData.password)) {
+      errors.password = 'Password must contain at least one lowercase letter.';
+    } else if (!/\d/.test(formData.password)) {
+      errors.password = 'Password must contain at least one number.';
+    }
+
+    if (isRegisterPage && formData.confirmPassword !== formData.password) {
+      errors.confirmPassword = 'Passwords do not match.';
+    }
+
+    // Set errors and prevent form submission if there are errors
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    // If all validation passes, you can proceed with form submission
     console.log('Form submitted:', formData);
   };
 
@@ -51,16 +93,24 @@ const Login_Hero = () => {
                 <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">Register Now</h1>
                 <form action="" className='w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]' onSubmit={handleSubmit}>
                   <fieldset className='w-full p-2'>
-                    <legend className='text-[0.8rem] font-semibold capitalize'>UserName</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type="text" placeholder='Barry Argent' name=" UserName" value={formData. UserName} onChange={handleInputChange} />
+                    <legend className='text-[0.8rem] font-semibold capitalize'>Username</legend>
+                    <input required className='p-1 text-[0.8rem] overflow-hidden' type="text" placeholder='Barry Argent' name="UserName" value={formData.UserName} onChange={handleInputChange} />
+                    {formErrors.UserName && <p className="text-red-500">{formErrors.UserName}</p>}
                   </fieldset>
                   <fieldset className='w-full p-2'>
                     <legend className='text-[0.8rem] font-semibold capitalize'>Email</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type="email" placeholder='xyz@gmail.com' name="email" value={formData.email} onChange={handleInputChange} />
+                    <input required className='p-1 text-[0.8rem] overflow-hidden' type="email" placeholder='xyz@gmail.com' name="email" value={formData.email} onChange={handleInputChange} />
+                    {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
                   </fieldset>
                   <fieldset className='w-full p-2'>
                     <legend className='text-[0.8rem] font-semibold capitalize'>Password</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type={passwordVisible ? 'text' : 'password'} placeholder='Enter Password' name="password" value={formData.password} onChange={handleInputChange} />
+                    <input required className='p-1 text-[0.8rem] overflow-hidden' type={passwordVisible ? 'text' : 'password'} placeholder='Enter Password' name="password" value={formData.password} onChange={handleInputChange} />
+                    {formErrors.password && <p className="text-red-500">{formErrors.password}</p>}
+                  </fieldset>
+                  <fieldset className='w-full p-2'>
+                    <legend className='text-[0.8rem] font-semibold capitalize'>Confirm Password</legend>
+                    <input required className='p-1 text-[0.8rem] overflow-hidden' type={passwordVisible ? 'text' : 'password'} placeholder='Confirm Password' name="confirmPassword" value={formData.confirmPassword} onChange={handleInputChange} />
+                    {formErrors.confirmPassword && <p className="text-red-500">{formErrors.confirmPassword}</p>}
                   </fieldset>
                   <span className='flex items-center relative gap-1 text-[0.7rem] font-medium'>
                     Show password
@@ -76,7 +126,7 @@ const Login_Hero = () => {
                     <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">
                       Register
                     </button>
-                    <button type="button" onClick={() => setFormData({ ...formData,  UserName: '', email: '', password: '', confirmPassword: '' })} className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full">
+                    <button type="button" onClick={() => setFormData({ UserName: '', email: '', password: '', confirmPassword: '' })} className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full">
                       Clear Form
                     </button>
                   </div>
@@ -92,11 +142,13 @@ const Login_Hero = () => {
                 <form action="" className='w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]' onSubmit={handleSubmit}>
                   <fieldset className='w-full p-2'>
                     <legend className='text-[0.8rem] font-semibold capitalize'>Email</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type="email" placeholder='xyz@gmail.com' name="email" value={formData.email} onChange={handleInputChange} />
+                    <input required className='p-1 text-[0.8rem] overflow-hidden' type="email" placeholder='xyz@gmail.com' name="email" value={formData.email} onChange={handleInputChange} />
+                    {formErrors.email && <p className="text-red-500">{formErrors.email}</p>}
                   </fieldset>
                   <fieldset className='w-full p-2'>
                     <legend className='text-[0.8rem] font-semibold capitalize'>Password</legend>
-                    <input className='p-1 text-[0.8rem] overflow-hidden' type={passwordVisible ? 'text' : 'password'} placeholder='Enter Password' name="password" value={formData.password} onChange={handleInputChange} />
+                    <input required className='p-1 text-[0.8rem] overflow-hidden' type={passwordVisible ? 'text' : 'password'} placeholder='Enter Password' name="password" value={formData.password} onChange={handleInputChange} />
+                    {formErrors.password && <p className="text-red-500">{formErrors.password}</p>}
                   </fieldset>
                   <span className='flex items-center relative gap-1 text-[0.7rem] font-medium'>
                     Show password

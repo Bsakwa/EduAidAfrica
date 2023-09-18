@@ -9,7 +9,7 @@ const Nav = () => {
             <img src={logo} alt="" width={50} /><span className='font-lobster text-[1.5rem]'> <span className='text-red-500'>EduAid</span>Africa</span>
       </div>
             <nav className='w-full h-full flex text-white  flex-row justify-between items-center text-body font-semibold'>
-                  <NavLink className='nav_list mr-4' to="/">Home</NavLink>
+                  <NavLink className='nav_list mr-4' to="/home">Home</NavLink>
                   <NavLink className='nav_list mr-4' to="/learners"> Scholarship Type</NavLink>
                   <NavLink className='nav_list mr-4' to="/educators">About Us</NavLink>
                   <NavLink className='nav_list mr-4' to="/partners">contact us</NavLink>
