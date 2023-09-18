@@ -1,0 +1,22 @@
+.herocontainer{
+      grid-template-columns: 60% 50%;
+}
+
+.form-content{
+    background: linear-gradient(98deg, #6eabf031, #60d6e8),url(../../assets/hero-bg-4.jpg) ;
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+fieldset{
+      border: 2px solid black ;
+      border-radius: 20px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+      margin: 2px 4px;
+      width: 90%;
+}
