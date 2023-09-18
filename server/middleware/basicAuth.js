@@ -2,10 +2,9 @@
  * Implements User Authentication system with Basic Authenticaion
  */
 
-// basicAuth.js
-const { isValidEmail } = require('./validation');
+const { isValidEmail } = require('../utils/validation');
 const bcrypt = require('bcrypt');
-const connectToDatabase = require('./db');
+const connectToDatabase = require('../db');
 
 // Function to retrieve user data from the database
 async function getUserByEmail(email) {
