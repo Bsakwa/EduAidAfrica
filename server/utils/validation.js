@@ -3,6 +3,7 @@
  * run npm install joi
  */
 
+const validator = require('validator');
 const Joi = require('joi');
 
 // Joi schema for user input validation
