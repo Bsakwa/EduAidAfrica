@@ -7,7 +7,9 @@
     "start": "node server/server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm start\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check-db": "curl http://localhost:5000/check-db",
+    "check-client": "npm run dev | grep 'VITE v4.4.9 ready'"
   },
   "author": "Brian Sakwa, Nwodo Thomas, Eric Obeng, Usaamah Ishola",
   "license": "ISC",

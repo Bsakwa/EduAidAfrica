@@ -3,6 +3,7 @@
  * run npm install joi, npm install validator
  */
 
+const validator = require('validator');
 const Joi = require('joi');
 const validator = require('validator');
 
