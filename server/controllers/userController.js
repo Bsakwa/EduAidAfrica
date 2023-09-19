@@ -1,12 +1,12 @@
 /*
- * Implemented creating, getting, updating, and deleting 
- * user records in your Node.js application with userController.js 
+ * Implemented creating, getting, updating, and deleting
+ * user records in your Node.js application with userController.js
  * hashed password before saving to the database
  */
 
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
-const { userSchema, isValidEmail } = require('../utils/validation'); 
+const { userSchema, isValidEmail } = require('../utils/validation');
 
 // Controller function to create a new user
 async function createUser(req, res) {
@@ -30,21 +30,14 @@ async function createUser(req, res) {
       return res.status(400).json({ message: 'Email already exists' });
     }
 
-    // Validate user input using Joi (if needed)
-    // const { error } = userSchema.validate({ username, email, password });
-    // if (error) {
-    //   return res.status(400).json({ message: error.details[0].message });
-    // }
-
-    // Validate the email using the custom function
     if (!isValidEmail(email)) {
       return res.status(400).json({ message: 'Invalid email address' });
     }
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of salt rounds
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user using your User model (replace with your actual model)
+    // Create a new user using your User model
     const newUser = new User({
       username,
       email,
@@ -68,7 +61,7 @@ async function getUserById(req, res) {
   try {
     const userId = req.params.id;
 
-    // Use your User model (replace with your actual model) to fetch the user from the database
+    // Use your User model to fetch the user from the database
     const user = await User.findById(userId);
 
     if (!user) {
@@ -109,7 +102,7 @@ async function deleteUserById(req, res) {
   try {
     const userId = req.params.id;
 
-    // Use your User model (replace with your actual model) to delete the user from the database
+    // Use User model to delete the user from the database
     const deletedUser = await User.findByIdAndRemove(userId);
 
     if (!deletedUser) {
