@@ -1,23 +1,12 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import NavigationBar from "./components/NavigationBar/Navigation";
+import "./App.css";
+import Navbar from "./components/Navigation/NavBar";
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <NavigationBar />
-        <Switch>
-          <Route path="/" exact>
-            Home
-          </Route>
-          <Route path="/scholarshipType">Scholarship Type</Route>
-          <Route path="/aboutUs">About Us</Route>
-          <Route path="/contact">Contact</Route>
-          <Route path="/applyNow">Apply Now</Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <Navbar />
+    </div>
   );
-}
+};
 
 export default App;
