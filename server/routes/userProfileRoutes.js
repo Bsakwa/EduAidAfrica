@@ -21,4 +21,8 @@ router.get('/getUserProfile/:id', userProfileController.getUserProfile);
 
 // Other routes for additional actions...
 
-module.exports = router;
+function userProfileRoutes(app) {
+  app.use('/userProfile', router);
+}
+
+module.exports = userProfileRoutes;
