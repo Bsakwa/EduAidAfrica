@@ -10,9 +10,9 @@ const Nav = () => {
       </div>
             <nav className='w-full h-full flex text-white  flex-row justify-between items-center text-body font-semibold'>
                   <NavLink className='nav_list mr-4' to="/home">Home</NavLink>
-                  <NavLink className='nav_list mr-4' to="/learners"> Scholarship Type</NavLink>
-                  <NavLink className='nav_list mr-4' to="/educators">About Us</NavLink>
-                  <NavLink className='nav_list mr-4' to="/partners">contact us</NavLink>
+                  <NavLink className='nav_list mr-4' to="/sholarship"> Scholarship Type</NavLink>
+                  <NavLink className='nav_list mr-4' to="/aboutus">About Us</NavLink>
+                  <NavLink className='nav_list mr-4' to="/contact">contact us</NavLink>
              </nav>
               <button className='w-full h-full  flex justify-end font-bold text-black'>
                   <NavLink to="/"> Apply Now</NavLink>  

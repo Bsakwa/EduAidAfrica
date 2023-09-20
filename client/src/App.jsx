@@ -3,8 +3,8 @@ import Login from './componets/Login/Login'
 import { Routes, Route } from 'react-router-dom';
 import Home from "./componets/main_componet/Home/Home"
 import Scholar from "./componets/main_componet/scholarship_type/Scholar"
-import About_us from "./componets/main_componet/About us/About_us"
-import Contact_us from "./componets/main_componet/contact us/ContactUs"
+import About_us from "./componets/main_componet/About_us/About_us"
+import Contact from "./componets/main_componet/contact_us/ContactUs"
 import './index.css'
  
  const App = () => {
@@ -12,9 +12,9 @@ import './index.css'
      <>
         <Routes>
               <Route path="/home" element={<Home/>} /> 
-              <Route path="/Scholarship type" element={<Scholar/>} />
-              <Route path="/About us" element={<About_us/>} />
-              <Route path="/contact us" element={<Contact_us/>} />
+              <Route path="/Scholarship" element={<Scholar/>} />
+              <Route path="/About" element={<About_us/>} />
+              <Route path="/contact" element={<Contact/>} />
               <Route path="/" element={<Login/>} />
         </Routes>
      </>
