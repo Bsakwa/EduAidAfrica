@@ -11,8 +11,9 @@ import "./index.css";
 const App = () => {
   return (
     <>
+      <Nav />
+
       <div className="App">
-        <Nav />
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/learners" element={<Scholar />} />

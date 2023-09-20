@@ -6,6 +6,7 @@ import Eric from "../../../assets/team/eric.jpg";
 import Brian from "../../../assets/team/brian.jpg";
 import Thomas from "../../../assets/team/thomas.jpg";
 import Usaamah from "../../../assets/team/usaamah.jpg";
+import Footer from "../Home/footer/footer";
 
 const About_us = () => {
   return (
@@ -113,6 +114,7 @@ const About_us = () => {
           </div>
         </section>
       </div>
+      <Footer />
     </>
   );
 };
