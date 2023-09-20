@@ -3,11 +3,11 @@
  */
 
 const express = require('express');
-const userRoutes = require('./userRoutes');
-const userProfileRoutes = require('./userProfileRoutes');
 const AppController = require('../controllers/AppController');
-const UserController = require('../controllers/userController');
-const authRoutes = require('./authRoutes');
+const UserController = require('../controllers/userController')
+const userRoutes = require('./userRoutes')
+const userProfileRoutes = require('./userProfileRoutes')
+const authRoutes = require('./authRoutes')
 
 function routes(app) {
   const router = express.Router();
@@ -15,14 +15,14 @@ function routes(app) {
   // Attach the router to the app
   app.use('/api', router);
 
-  // Include user-related routes
+  // Include the user routes
   userRoutes(router);
 
   // Include userProfile-related routes
-  userProfileRoutes(router);
-
-  // Include authentication-related routes
   authRoutes(router);
+
+  // Include userProfile-related routes
+  userProfileRoutes(router);
 
   // Define an endpoint to check the database connection
   router.get('/check-db', AppController.checkDatabase);

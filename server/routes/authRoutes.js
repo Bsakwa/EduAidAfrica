@@ -1,21 +1,22 @@
 /*
- * In authRoutes.js, we have established endpoints to facilitate user interactions,
- * including user registration, login, and logout, all within a basic authentication system.
+ * Crate user auth
  */
 
 const express = require('express');
-const { loginUser, logoutUser, registerUser, sessionMiddleware } = require('../controllers/authController');
-const { basicAuthWithEmailPassword } = require('../middleware/basicAuth');
-
 const router = express.Router();
+const AuthController = require('../controllers/authController');
 
-// Route to register a user
-router.post('/register', basicAuthWithEmailPassword, registerUser);
+// Define an endpoint to register a new user
+router.post('/register', AuthController.registerUser);
 
-// Route to log in and create a session
-router.post('/login', basicAuthWithEmailPassword, loginUser);
+// Define an endpoint to log in a user
+router.post('/login', AuthController.loginUser);
 
-// Route to log out and destroy the session
-router.post('/logout', logoutUser);
+// Define an endpoint to log out a user
+router.post('/logout', AuthController.logoutUser);
 
-module.exports = router;
+function authRoutes(app) {
+  app.use('/auth', router);
+}
+
+module.exports = authRoutes;
