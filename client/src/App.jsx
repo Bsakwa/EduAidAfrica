@@ -10,16 +10,18 @@ import "./index.css";
 
 const App = () => {
   return (
-    <div className="App">
-      <Nav />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/Scholarship type" element={<Scholar />} />
-        <Route path="/educators" element={<About_us />} />
-        <Route path="/partners" element={<Contact_us />} />
-        <Route path="/" element={<Login />} />
-      </Routes>
-    </div>
+    <>
+      <div className="App">
+        <Nav />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/learners" element={<Scholar />} />
+          <Route path="/educators" element={<About_us />} />
+          <Route path="/partners" element={<Contact_us />} />
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </div>
+    </>
   );
 };
 

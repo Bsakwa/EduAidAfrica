@@ -114,7 +114,7 @@ const Login_Hero = () => {
                     </button>
                   </div>
                   <p className="text-[0.8rem] mt-2">
-                    Don't have an account? <span className="text-blue-500 cursor-pointer" onClick={handleTogglePage}>Sign up</span>
+                    Don&apos;t have an account? <span className="text-blue-500 cursor-pointer" onClick={handleTogglePage}>Sign up</span>
                   </p>
                 </form>
               </>
