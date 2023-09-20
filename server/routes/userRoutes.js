@@ -26,4 +26,3 @@ function userRoutes(app) {
 }
 
 module.exports = userRoutes;
-

@@ -40,6 +40,7 @@ const userProfileSchema = new mongoose.Schema({
     type: String,
     required: false, // If it is needed, it will be set to true
   },
+}
 });
 
 // Create and export the UserProfile model

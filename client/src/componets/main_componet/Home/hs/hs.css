@@ -1,0 +1,42 @@
+/* Homeslide.css */
+
+.homeslide-container {
+      position: relative;
+      /* overflow: hidden; */
+    }
+    
+    .homeslide-image {
+      position: relative;
+      width: 100%;
+      height: 100%; 
+      animation: fade 3s ease-in-out infinite;
+      object-fit: fill;
+    }
+   
+    .homeslide-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background:linear-gradient(130deg, #07060342 31%, #3d727a9f);
+      
+    }
+    
+    .text-black {
+      color: #000;
+    }
+    
+    .text-4xl {
+      font-size: 2.25rem;
+    }
+    
+    .text-lg {
+      font-size: 1.125rem;
+    }
+
+    

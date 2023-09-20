@@ -1,6 +1,6 @@
 /*
- * Defines controller functions with basic authentication for registeruser,
- * loginUser And Session-Based Authentication for logout
+ * Defines controller functions with basic authentication for registerUser,
+ * loginUser, and session-based authentication for logoutUser
  */
 
 const bcrypt = require('bcrypt');
