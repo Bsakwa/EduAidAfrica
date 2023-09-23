@@ -28,25 +28,25 @@ const Contacts = () => {
       <h1 className='flex justify-center items-center text-4xl mt-8 font-roboto text-gray-600  font-semibold capitalize'>contact us </h1>
       <div className="container flex justify-between items-center gap-8 p-8 mx-auto  ">
         <div className='w-full flex flex-col gap-8 h-full'>
-        <div className='flex gap-4 items-center '>
+        <div className='flex gap-4 items-center'>
           <div className='text-white'><BiPhone/></div>
           <div className='flex flex-col gap-2'>
             <h1 className='text-gray-400'>PHONE:</h1>
             <p className="text-white">+ 1235 2355 98</p>
           </div>
         </div> 
-        <div className='flex gap-4 items-center '>
+        <div className='flex gap-4 items-center'>
           <div className='text-white'><HiMail/></div>
           <div className='flex flex-col gap-2'>
             <h1 className='text-gray-400'>EMAIL:</h1>
             <p className="text-white"> eduaidafrica@gmail.com</p>
           </div>
         </div>
-        <div className='flex gap-4 items-center '>
+        <div className='flex gap-4 items-center'>
           <div className='text-white'><BiWorld/></div>
-          <div className='flex flex-col gap-2'>
-            <h1 className='text-gray-400'>WEBSITE:</h1>
-            <p className="text-white"> eduaidafrica.com</p>
+           <div className='flex flex-col gap-2'>
+              <h1 className='text-gray-400'>WEBSITE:</h1>
+              <p className="text-white"> eduaidafrica.com</p>
           </div>
         </div>
         </div>
