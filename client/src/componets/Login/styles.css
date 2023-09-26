@@ -1,3 +1,9 @@
+/* Set the default font for the entire project */
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Other styles remain unchanged */
 .herocontainer {
   grid-template-columns: 60% 50%;
 }
@@ -24,5 +30,5 @@ input[type="password"] {
 
 .herocontainer {
   margin-top: 80px;
-  height: calc(100vh - 85px);
+  height:calc(100vh - 200px);
 }

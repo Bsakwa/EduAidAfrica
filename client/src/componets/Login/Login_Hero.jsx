@@ -3,10 +3,11 @@ import "./styles.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import Footer from "../main_componet/Home/footer/footer";
+import axios from "axios"; // Import Axios for making HTTP requests
 
 const Login_Hero = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [isRegisterPage, setIsRegisterPage] = useState(true); // Initially, show the register page
+  const [isRegisterPage, setIsRegisterPage] = useState(true);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -17,17 +18,15 @@ const Login_Hero = () => {
   };
 
   const [formData, setFormData] = useState({
-    UserName: "",
+    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [formErrors, setFormErrors] = useState({
-    UserName: "",
+    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
@@ -42,8 +41,8 @@ const Login_Hero = () => {
     // Add validation logic here and update isFormValid accordingly
     const errors = {};
 
-    if (formData.UserName.trim() === "") {
-      errors.UserName = "Username is required.";
+    if (formData.username.trim() === "") {
+      errors.username = "Username is required.";
     }
 
     if (formData.email.trim() === "") {
@@ -62,10 +61,6 @@ const Login_Hero = () => {
       errors.password = "Password must contain at least one number.";
     }
 
-    if (isRegisterPage && formData.confirmPassword !== formData.password) {
-      errors.confirmPassword = "Passwords do not match.";
-    }
-
     // Check if there are no errors
     const isValid = Object.keys(errors).length === 0;
 
@@ -76,12 +71,21 @@ const Login_Hero = () => {
     setFormErrors(errors);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Perform form submission logic if isFormValid is true
     if (isFormValid) {
-      console.log("Form submitted:", formData);
+      try {
+        // Send a POST request to your registration endpoint
+        const response = await axios.post("/api/register", formData);
+
+        // Handle the response (e.g., show a success message)
+        console.log("Registration successful:", response.data.message);
+      } catch (error) {
+        // Handle registration failure (e.g., show an error message)
+        console.error("Registration failed:", error);
+      }
     }
   };
 
@@ -90,7 +94,7 @@ const Login_Hero = () => {
       <div className="herocontainer  flex">
         <div className="form-content   gap-[10rem] overflow-hidden w-full h-[87vh] flex justify-between items-center">
           <div className="text w-full flex justify-center">
-            <h1 className="capitalize w-full flex font-roboto text-[2rem] font-bold ml-[2rem] text-yellow-50 text-center w-[20rem]">
+            <h1 className="capitalize w-full flex font-quicksand text-[2rem] font-bold ml-[2rem] text-yellow-50 text-center w-[20rem]">
               Powering your career by getting scholarships to your dream
               university around the world.
             </h1>
@@ -115,13 +119,13 @@ const Login_Hero = () => {
                       required
                       className="p-1 text-[0.8rem] overflow-hidden"
                       type="text"
-                      placeholder="Barry Argent"
-                      name="UserName"
-                      value={formData.UserName}
+                      placeholder="Enter Username"
+                      name="username"
+                      value={formData.username}
                       onChange={handleInputChange}
                     />
-                    {formErrors.UserName && (
-                      <p className="text-red-500">{formErrors.UserName}</p>
+                    {formErrors.username && (
+                      <p className="text-red-500">{formErrors.username}</p>
                     )}
                   </fieldset>
                   <fieldset className="w-full p-2">
@@ -132,7 +136,7 @@ const Login_Hero = () => {
                       required
                       className="p-1 text-[0.8rem] overflow-hidden"
                       type="email"
-                      placeholder="xyz@gmail.com"
+                      placeholder="Enter Email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
@@ -181,16 +185,15 @@ const Login_Hero = () => {
                         isFormValid ? "" : "pointer-events-none opacity-50"
                       }`}
                     >
-                      <NavLink to="/home">Register</NavLink>
+                      Register
                     </button>
                     <button
                       type="button"
                       onClick={() =>
                         setFormData({
-                          UserName: "",
+                          username: "",
                           email: "",
                           password: "",
-                          confirmPassword: "",
                         })
                       }
                       className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full"
@@ -228,7 +231,7 @@ const Login_Hero = () => {
                       required
                       className="p-1 text-[0.8rem] overflow-hidden"
                       type="email"
-                      placeholder="xyz@gmail.com"
+                      placeholder="Enter Email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
@@ -276,11 +279,11 @@ const Login_Hero = () => {
                       className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full"
                       disabled={!isFormValid}
                     >
-                      <NavLink to="/home">Login</NavLink>
+                      Login
                     </button>
                   </div>
                   <p className="text-[0.8rem] mt-2">
-                    Don&apos;t have an account?{" "}
+                    Don't have an account?{" "}
                     <span
                       className="text-blue-500 cursor-pointer"
                       onClick={handleTogglePage}
