@@ -78,7 +78,7 @@ const Login_Hero = () => {
     if (isFormValid) {
       try {
         // Send a POST request to your registration endpoint
-        const response = await axios.post("/api/register", formData);
+        const response = await axios.post("http://localhost:5000/api/register", formData);
 
         // Handle the response (e.g., show a success message)
         console.log("Registration successful:", response.data.message);
