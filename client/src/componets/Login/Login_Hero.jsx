@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./styles.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
 import Footer from "../main_componet/Home/footer/footer";
 import axios from "axios"; // Import Axios for making HTTP requests
+import { useNavigate } from 'react-router-dom';
+
 
 const Login_Hero = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isRegisterPage, setIsRegisterPage] = useState(true);
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -38,10 +41,9 @@ const Login_Hero = () => {
       [name]: value,
     });
 
-    // Add validation logic here and update isFormValid accordingly
     const errors = {};
 
-    if (formData.username.trim() === "") {
+    if (formData.username.trim() === "" && isRegisterPage) {
       errors.username = "Username is required.";
     }
 
@@ -61,30 +63,64 @@ const Login_Hero = () => {
       errors.password = "Password must contain at least one number.";
     }
 
-    // Check if there are no errors
     const isValid = Object.keys(errors).length === 0;
-
-    // Update the isFormValid state
     setIsFormValid(isValid);
-
-    // Set form errors
     setFormErrors(errors);
   };
 
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    // Perform form submission logic if isFormValid is true
     if (isFormValid) {
       try {
-        // Send a POST request to your registration endpoint
-        const response = await axios.post("http://localhost:5000/api/register", formData);
+        const response = await axios.post(
+          "http://localhost:5000/api/auth/register",
+          formData
+        );
 
-        // Handle the response (e.g., show a success message)
         console.log("Registration successful:", response.data.message);
+
+        const loginResponse = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          {
+            email: formData.email,
+            password: formData.password,
+          }
+        );
+
+        console.log("Login successful:", loginResponse.data.message);
+
+        // You can set the user's token in your app's state or local storage
+        // Example: localStorage.setItem('token', loginResponse.data.token);
+        navigate('/Dashboard');
+
       } catch (error) {
-        // Handle registration failure (e.g., show an error message)
-        console.error("Registration failed:", error);
+        console.error("Registration or login failed:", error);
+      }
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (isFormValid) {
+      try {
+        const loginResponse = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          {
+            email: formData.email,
+            password: formData.password,
+          }
+        );
+
+        console.log("Login successful:", loginResponse.data.message);
+
+        // You can set the user's token in your app's state or local storage
+        // Example: localStorage.setItem('token', loginResponse.data.token);
+      
+        navigate('/Dashboard');
+      } catch (error) {
+        console.error("Login failed:", error);
       }
     }
   };
@@ -102,32 +138,35 @@ const Login_Hero = () => {
           <div className="form flex relative bg-white w-full flex-col rounded-[1rem] items-center p-3  mr-5 mt-10 justify-start">
             {isRegisterPage ? (
               <>
-                {/* Register Form */}
                 <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">
                   Register Now
                 </h1>
                 <form
                   action=""
                   className="w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]"
-                  onSubmit={handleSubmit}
+                  onSubmit={handleRegister}
                 >
-                  <fieldset className="w-full p-2">
-                    <legend className="text-[0.8rem] font-semibold capitalize">
-                      Username
-                    </legend>
-                    <input
-                      required
-                      className="p-1 text-[0.8rem] overflow-hidden"
-                      type="text"
-                      placeholder="Enter Username"
-                      name="username"
-                      value={formData.username}
-                      onChange={handleInputChange}
-                    />
-                    {formErrors.username && (
-                      <p className="text-red-500">{formErrors.username}</p>
-                    )}
-                  </fieldset>
+                  {/* Username Field */}
+                  {isRegisterPage && (
+                    <fieldset className="w-full p-2">
+                      <legend className="text-[0.8rem] font-semibold capitalize">
+                        Username
+                      </legend>
+                      <input
+                        required
+                        className="p-1 text-[0.8rem] overflow-hidden"
+                        type="text"
+                        placeholder="Enter Username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                      />
+                      {formErrors.username && (
+                        <p className="text-red-500">{formErrors.username}</p>
+                      )}
+                    </fieldset>
+                  )}
+                  {/* Email Field */}
                   <fieldset className="w-full p-2">
                     <legend className="text-[0.8rem] font-semibold capitalize">
                       Email
@@ -145,6 +184,7 @@ const Login_Hero = () => {
                       <p className="text-red-500">{formErrors.email}</p>
                     )}
                   </fieldset>
+                  {/* Password Field */}
                   <fieldset className="w-full p-2">
                     <legend className="text-[0.8rem] font-semibold capitalize">
                       Password
@@ -162,6 +202,7 @@ const Login_Hero = () => {
                       <p className="text-red-500">{formErrors.password}</p>
                     )}
                   </fieldset>
+                  {/* Show Password */}
                   <span className="flex items-center relative gap-1 text-[0.7rem] font-medium">
                     Show password
                     <div className="icons absolute right-1">
@@ -196,7 +237,7 @@ const Login_Hero = () => {
                           password: "",
                         })
                       }
-                      className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full"
+                      className="bg-red-500 hover.bg-red-600 text-white py-2 px-4 rounded-full"
                     >
                       Clear Form
                     </button>
@@ -214,14 +255,13 @@ const Login_Hero = () => {
               </>
             ) : (
               <>
-                {/* Login Form */}
                 <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">
                   Login
                 </h1>
                 <form
                   action=""
                   className="w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]"
-                  onSubmit={handleSubmit}
+                  onSubmit={handleLogin}
                 >
                   <fieldset className="w-full p-2">
                     <legend className="text-[0.8rem] font-semibold capitalize">
