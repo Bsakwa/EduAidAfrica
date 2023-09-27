@@ -152,11 +152,11 @@ const Scholars = () => {
     <div className="header my-8 flex flex-col gap-6">
       <h1 className="text-blue-300 flex justify-center my-6 font-extrabold text-4xl font-quicksand">chack out some of our latest Scholarships</h1>
 
-      <div className="flex justifly-between items-center w-full h-full">
+      {/* <div className="flex justifly-between items-center w-full h-full">
         <NavLink className='rounded-full flex item-center' to={path}>{anchorText}</NavLink>
         <NavLink className='rounded-full flex item-center' to={path}>{anchorText}</NavLink>
         <NavLink className='rounded-full flex item-center'  to={path}>{anchorText}</NavLink>
-      </div>
+      </div> */}
 
     </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
