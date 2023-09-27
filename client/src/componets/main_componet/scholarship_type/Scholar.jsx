@@ -1,8 +1,13 @@
 import React from 'react'
+import Scholars from './Scholars'
+import Nav from '../Nav/Nav'
 
 const Scholar = () => {
   return (
-    <div>Scholar</div>
+    <>
+      <Nav/>
+      <Scholars/>
+    </>
   )
 }
 
