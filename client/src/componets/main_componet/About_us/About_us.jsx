@@ -7,10 +7,12 @@ import Brian from "../../../assets/team/brian.jpg";
 import Thomas from "../../../assets/team/thomas.jpg";
 import Usaamah from "../../../assets/team/usaamah.jpg";
 import Footer from "../Home/footer/footer";
+import Nav from '../Nav/Nav';
 
 const About_us = () => {
   return (
     <>
+      <Nav />
       <div className="about-us">
         <span className="about">About Us</span>
         <div className="missionVisionStat">

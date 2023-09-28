@@ -1,6 +1,6 @@
 import React from 'react'
 import './reviews.css'
-import AV1 from '../../../../assets/me.jpeg'
+import AV1 from '../../../../assets/Me.jpeg'
 import AV2 from '../../../../assets/barry.jpg'
 import AV3 from '../../../../assets/avatar3.jpg'
 import AV4 from '../../../../assets/avatar4.jpg'
