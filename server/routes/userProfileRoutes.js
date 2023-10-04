@@ -1,5 +1,5 @@
 /*
- * Define routes for user profile actions 
+ * Define routes for user profile actions
  */
 
 const express = require('express');

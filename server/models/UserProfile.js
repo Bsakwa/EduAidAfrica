@@ -31,11 +31,11 @@ const userProfileSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true, 
+    required: true,
   },
   phoneNumber: {
     type: String,
-    required: true, 
+    required: true,
   bio: {
     type: String,
     required: false, // If it is needed, it will be set to true
