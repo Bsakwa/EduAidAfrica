@@ -36,12 +36,14 @@ const userProfileSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
     required: true,
+  },
+
   bio: {
     type: String,
-    required: false, // If it is needed, it will be set to true
+    required: false,
   },
-}
 });
 
 // Create and export the UserProfile model
 module.exports = mongoose.model('UserProfile', userProfileSchema);
+
