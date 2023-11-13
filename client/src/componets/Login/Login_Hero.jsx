@@ -2,13 +2,189 @@ import React, { useState } from "react";
 import "./styles.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Footer from "../main_componet/Home/footer/footer";
-import axios from "axios"; // Import Axios for making HTTP requests
+import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
+const ShowPassword = ({ passwordVisible, togglePasswordVisibility }) => (
+  <span className="flex items-center absolute right-3 top-2/4 -translate-y-2/4 gap-1 text-[0.7rem] font-medium">
+    <div className="icons">
+      {passwordVisible ? (
+        <AiOutlineEye
+          className="text-[1.2rem] cursor-pointer" // Increase the icon size
+          onClick={togglePasswordVisibility}
+        />
+      ) : (
+        <AiOutlineEyeInvisible
+          className="text-[1.2rem] cursor-pointer" // Increase the icon size
+          onClick={togglePasswordVisibility}
+        />
+      )}
+    </div>
+  </span>
+);
+
+const FormField = ({ label, type, placeholder, name, value, onChange, error }) => (
+  <fieldset className="w-full p-2">
+    <legend className="text-[0.8rem] font-semibold capitalize">{label}</legend>
+    <input
+      required
+      className={`p-1 text-[0.8rem] outline-none ${error ? 'border-red-500' : ''}`} // Removed 'overflow-hidden' and added 'outline-none'
+      type={type}
+      placeholder={placeholder}
+      name={name}
+      value={value}
+      onChange={onChange}
+    />
+    {error && (
+      <p className="text-red-500 bg-transparent">{error}</p>
+    )}
+  </fieldset>
+);
+
+const AuthForm = ({
+  isRegisterPage,
+  isForgotPasswordPage,
+  formData,
+  formErrors,
+  isFormValid,
+  handleInputChange,
+  handleSubmit,
+  clearForm,
+  togglePage,
+  toggleForgotPassword,
+}) => (
+  <form
+    action=""
+    className="w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]"
+    onSubmit={handleSubmit}
+  >
+    {isRegisterPage && (
+      <FormField
+        label="Username"
+        type="text"
+        placeholder="Enter Username"
+        name="username"
+        value={formData.username}
+        onChange={handleInputChange}
+        error={formErrors.username}
+      />
+    )}
+
+    <FormField
+      label="Email"
+      type="email"
+      placeholder="Enter Email"
+      name="email"
+      value={formData.email}
+      onChange={handleInputChange}
+      error={formErrors.email}
+    />
+
+    <div className="relative">
+      <FormField
+        label="Password"
+        type={formData.passwordVisible ? "text" : "password"}
+        placeholder="Enter Password"
+        name="password"
+        value={formData.password}
+        onChange={handleInputChange}
+        error={formErrors.password}
+      />
+
+      {isRegisterPage && (
+        <ShowPassword
+          passwordVisible={formData.passwordVisible}
+          togglePasswordVisibility={() => handleInputChange({ target: { name: 'passwordVisible', value: !formData.passwordVisible } })}
+        />
+      )}
+    </div>
+
+    {!isRegisterPage && !isForgotPasswordPage && (
+      <p className="text-[0.8rem] mt-2">
+        <span
+          className="text-blue-500 cursor-pointer"
+          onClick={toggleForgotPassword}
+        >
+          Forgot Password?
+        </span>
+      </p>
+    )}
+
+    <div className="flex gap-2">
+      <button
+        type="submit"
+        className={`bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full ${isFormValid ? "" : "pointer-events-none opacity-50"}`}
+      >
+        {isRegisterPage ? "Register" : "Login"}
+      </button>
+      <button
+        type="button"
+        onClick={clearForm}
+        className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full"
+      >
+        Clear Form
+      </button>
+    </div>
+
+    <p className="text-[0.8rem] mt-2">
+      {isRegisterPage ? "Already have an account?" : "Don't have an account?"}{" "}
+      <span
+        className="text-blue-500 cursor-pointer"
+        onClick={togglePage}
+      >
+        {isRegisterPage ? "Sign in" : "Sign up"}
+      </span>
+    </p>
+  </form>
+);
+
+const ForgotPasswordForm = ({ handleForgotPassword, handleToggleForgotPassword, formData, handleInputChange, formErrors }) => (
+  <form
+    action=""
+    className="w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]"
+    onSubmit={handleForgotPassword}
+  >
+    <FormField
+      label="Email"
+      type="email"
+      placeholder="Enter Email"
+      name="email"
+      value={formData.email}
+      onChange={handleInputChange}
+      error={formErrors.email}
+    />
+
+    <div className="flex gap-2">
+      <button
+        type="submit"
+        className={`bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full`}
+      >
+        Submit
+      </button>
+      <button
+        type="button"
+        onClick={handleToggleForgotPassword}
+        className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full"
+      >
+        Cancel
+      </button>
+    </div>
+
+    <p className="text-[0.8rem] mt-2">
+      <span
+        className="text-blue-500 cursor-pointer"
+        onClick={handleToggleForgotPassword}
+      >
+        Go back to Login
+      </span>
+    </p>
+  </form>
+);
 
 const Login_Hero = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isRegisterPage, setIsRegisterPage] = useState(true);
+  const [isForgotPasswordPage, setIsForgotPasswordPage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,12 +194,18 @@ const Login_Hero = () => {
 
   const handleTogglePage = () => {
     setIsRegisterPage(!isRegisterPage);
+    setIsForgotPasswordPage(false); // Reset to login mode when toggling pages
+  };
+
+  const handleToggleForgotPassword = () => {
+    setIsForgotPasswordPage(!isForgotPasswordPage);
   };
 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+    passwordVisible: false,
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -44,7 +226,7 @@ const Login_Hero = () => {
     const errors = {};
 
     if (formData.username.trim() === "" && isRegisterPage) {
-      errors.username = "Username is required.";
+      errors.username = "Username is";
     }
 
     if (formData.email.trim() === "") {
@@ -125,211 +307,90 @@ const Login_Hero = () => {
     }
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+
+    // Implement the logic for handling forgot password functionality here
+    // ...
+
+    console.log("Forgot Password form submitted!");
+  };
+
+  const clearForm = () => {
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      passwordVisible: false,
+    });
+    setFormErrors({
+      username: "",
+      email: "",
+      password: "",
+    });
+    setIsFormValid(false);
+  };
+
   return (
     <div className=" ">
       <div className="herocontainer  flex">
         <div className="form-content   gap-[10rem] overflow-hidden w-full h-[87vh] flex justify-between items-center">
           <div className="text w-full flex justify-center">
-            <h1 className="capitalize w-full flex font-quicksand text-[2rem] font-bold ml-[2rem] text-yellow-50 text-center w-[20rem]">
+            <h1 className="capitalize w-full flex font-quicksand text-[2rem] font-bold ml-[2rem] text-center w-[20rem]">
             </h1>
           </div>
           <div className="form flex relative bg-white w-full flex-col rounded-[1rem] items-center p-3  mr-5 mt-10 justify-start">
-            {isRegisterPage ? (
+            {isForgotPasswordPage ? (
               <>
                 <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">
-                  Register Now
+                  Forgot Password
                 </h1>
-                <form
-                  action=""
-                  className="w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]"
-                  onSubmit={handleRegister}
-                >
-                  {/* Username Field */}
-                  {isRegisterPage && (
-                    <fieldset className="w-full p-2">
-                      <legend className="text-[0.8rem] font-semibold capitalize">
-                        Username
-                      </legend>
-                      <input
-                        required
-                        className="p-1 text-[0.8rem] overflow-hidden"
-                        type="text"
-                        placeholder="Enter Username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleInputChange}
-                      />
-                      {formErrors.username && (
-                        <p className="text-red-500">{formErrors.username}</p>
-                      )}
-                    </fieldset>
-                  )}
-                  {/* Email Field */}
-                  <fieldset className="w-full p-2">
-                    <legend className="text-[0.8rem] font-semibold capitalize">
-                      Email
-                    </legend>
-                    <input
-                      required
-                      className="p-1 text-[0.8rem] overflow-hidden"
-                      type="email"
-                      placeholder="Enter Email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                    />
-                    {formErrors.email && (
-                      <p className="text-red-500">{formErrors.email}</p>
-                    )}
-                  </fieldset>
-                  {/* Password Field */}
-                  <fieldset className="w-full p-2">
-                    <legend className="text-[0.8rem] font-semibold capitalize">
-                      Password
-                    </legend>
-                    <input
-                      required
-                      className="p-1 text-[0.8rem] overflow-hidden"
-                      type={passwordVisible ? "text" : "password"}
-                      placeholder="Enter Password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleInputChange}
-                    />
-                    {formErrors.password && (
-                      <p className="text-red-500">{formErrors.password}</p>
-                    )}
-                  </fieldset>
-                  {/* Show Password */}
-                  <span className="flex items-center relative gap-1 text-[0.7rem] font-medium">
-                    Show password
-                    <div className="icons absolute right-1">
-                      {passwordVisible ? (
-                        <AiOutlineEyeInvisible
-                          className="text-[0.8rem]"
-                          onClick={togglePasswordVisibility}
-                        />
-                      ) : (
-                        <AiOutlineEye
-                          className="text-[0.8rem]"
-                          onClick={togglePasswordVisibility}
-                        />
-                      )}
-                    </div>
-                  </span>
-                  <div className="flex gap-2">
-                    <button
-                      type="submit"
-                      className={`bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full ${
-                        isFormValid ? "" : "pointer-events-none opacity-50"
-                      }`}
-                    >
-                      Register
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setFormData({
-                          username: "",
-                          email: "",
-                          password: "",
-                        })
-                      }
-                      className="bg-red-500 hover.bg-red-600 text-white py-2 px-4 rounded-full"
-                    >
-                      Clear Form
-                    </button>
-                  </div>
-                  <p className="text-[0.8rem] mt-2">
-                    Already have an account?{" "}
-                    <span
-                      className="text-blue-500 cursor-pointer"
-                      onClick={handleTogglePage}
-                    >
-                      Sign in
-                    </span>
-                  </p>
-                </form>
+                <ForgotPasswordForm
+                  handleForgotPassword={handleForgotPassword}
+                  handleToggleForgotPassword={handleToggleForgotPassword}
+                  formData={formData}
+                  handleInputChange={handleInputChange}
+                  formErrors={formErrors}
+                />
               </>
             ) : (
               <>
-                <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">
-                  Login
-                </h1>
-                <form
-                  action=""
-                  className="w-full font-quicksand flex flex-col gap-2 p-4 max-w-[30rem]"
-                  onSubmit={handleLogin}
-                >
-                  <fieldset className="w-full p-2">
-                    <legend className="text-[0.8rem] font-semibold capitalize">
-                      Email
-                    </legend>
-                    <input
-                      required
-                      className="p-1 text-[0.8rem] overflow-hidden"
-                      type="email"
-                      placeholder="Enter Email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
+                {isRegisterPage ? (
+                  <>
+                    <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">
+                      Register Now
+                    </h1>
+                    <AuthForm
+                      isRegisterPage={isRegisterPage}
+                      formData={formData}
+                      formErrors={formErrors}
+                      isFormValid={isFormValid}
+                      handleInputChange={handleInputChange}
+                      handleSubmit={handleRegister}
+                      clearForm={clearForm}
+                      togglePage={handleTogglePage}
+                      toggleForgotPassword={handleToggleForgotPassword}
                     />
-                    {formErrors.email && (
-                      <p className="text-red-500">{formErrors.email}</p>
-                    )}
-                  </fieldset>
-                  <fieldset className="w-full p-2">
-                    <legend className="text-[0.8rem] font-semibold capitalize">
-                      Password
-                    </legend>
-                    <input
-                      required
-                      className="p-1 text-[0.8rem] overflow-hidden"
-                      type={passwordVisible ? "text" : "password"}
-                      placeholder="Enter Password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleInputChange}
-                    />
-                    {formErrors.password && (
-                      <p className="text-red-500">{formErrors.password}</p>
-                    )}
-                  </fieldset>
-                  <span className="flex items-center relative gap-1 text-[0.7rem] font-medium">
-                    Show password
-                    <div className="icons absolute right-1">
-                      {passwordVisible ? (
-                        <AiOutlineEyeInvisible
-                          className="text-[0.8rem]"
-                          onClick={togglePasswordVisibility}
-                        />
-                      ) : (
-                        <AiOutlineEye
-                          className="text-[0.8rem]"
-                          onClick={togglePasswordVisibility}
-                        />
-                      )}
-                    </div>
-                  </span>
-                  <div className="flex gap-2">
-                    <button
-                      type="submit"
-                      className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full"
-                      disabled={!isFormValid}
-                    >
+                  </>
+                ) : (
+                  <>
+                    <h1 className="capitalize text-blue-400 font-bold text-[1.5rem]">
                       Login
-                    </button>
-                  </div>
-                  <p className="text-[0.8rem] mt-2">
-                    Don't have an account?{" "}
-                    <span
-                      className="text-blue-500 cursor-pointer"
-                      onClick={handleTogglePage}
-                    >
-                      Sign up
-                    </span>
-                  </p>
-                </form>
+                    </h1>
+                    <AuthForm
+                      isRegisterPage={isRegisterPage}
+                      isForgotPasswordPage={isForgotPasswordPage}
+                      formData={formData}
+                      formErrors={formErrors}
+                      isFormValid={isFormValid}
+                      handleInputChange={handleInputChange}
+                      handleSubmit={handleLogin}
+                      clearForm={clearForm}
+                      togglePage={handleTogglePage}
+                      toggleForgotPassword={handleToggleForgotPassword}
+                    />
+                  </>
+                )}
               </>
             )}
           </div>
