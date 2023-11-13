@@ -1,71 +1,107 @@
-footer{
-      background-color: var(--color-primary);
-      padding: 3rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 7rem;
-  }
-  
-  footer a{
-      color: var(--color-bg);
-  }
-  
-  .footer_log{
-      font-size: 2rem;
-      font-weight: 500;
-      margin-bottom: 2rem;
-      display: inline-block;
-  }
-  
-  
-  
-  .permalinks{
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin:0 auto 3rem ;
-  }
-  
-  
-  
-  
-  
-  .footer_socials{
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom:4rem ;
-  }
-  
-  .footer_socials a
-  {
-      background: var(--color-bg);
-      color: var(--color-white);
-      padding: 0.8rem;
-      border-radius: 0.7rem;
-      border: 1px solid transparent;
-  }
-  
-  .footer_socials a:hover{
-      background: transparent;
-      color: var(--color-bg);
-      border-color: var(--color-bg);
-  }
-  
-  
-  
-  .footer_copy-right{
-      margin-bottom: 4rem;
-      color: var(--color-bg);
-  }
-  
-  @media screen and (max-width:600px){
-      .permalinks{
-          flex-direction: column;
-          gap: 1.5rem;
-      }   
-  
-      .footer_socials{
-          margin-bottom: 2.6rem;
-      }
-  }
+/* Add your global styles above if any */
+
+body {
+  margin: 0; /* Ensure no default margin for the body */
+}
+
+footer {
+  background-color: #2c3e50; /* Updated background color for better contrast */
+  padding: 3rem 0;
+  text-align: center;
+  font-size: 1rem; /* Increased font size for text */
+  margin-top: 7rem;
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.support-section,
+.legal-section,
+.subscribe-section,
+.about-section {
+  width: 25%;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+}
+
+.support-section h3,
+.legal-section h3,
+.subscribe-section h3,
+.about-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem; /* Increased font size for heading */
+  font-weight: bold;
+}
+
+.support-links,
+.legal-links,
+.about-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.support-links a,
+.legal-links a,
+.about-links a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem; /* Increased font size for text */
+}
+
+.support-links a:hover,
+.legal-links a:hover,
+.about-links a:hover {
+  text-decoration: underline;
+}
+
+.subscribe-section input,
+.subscribe-section button {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem; /* Increased font size for the button */
+  color: #ffffff; /* Text color for the button */
+  background-color: #27ae60; /* Updated button color for better contrast */
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.subscribe-section input::placeholder {
+  color: #ffffff; /* Set placeholder text color to white */
+}
+
+.subscribe-section button:hover {
+  background-color: #219a52; /* Hover color for the button */
+}
+
+.footer_socials {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the social links horizontally */
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.footer_socials a {
+  background: #ffffff;
+  color: #3498db;
+  padding: 0.8rem;
+  border-radius: 0.7rem;
+  border: 1px solid transparent;
+}
+
+.footer_socials a:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.footer_copy-right {
+  width: 100%;
+  margin-top: 2rem;
+}
+

@@ -14,7 +14,7 @@ const N_u = () => {
     <div className='w-full h-full p-7 '>
       <div className="header flex items-center justify-center ">
             <h1 className='text-4xl  font-bold  text-green-100   font-quicksand'>
-                  check out for lastest scholarships
+                  check out for latest scholarships
             </h1>
             <span className='font-semibold  font-roboto text-blue-500 hover:text-red-400' ></span >
       </div>

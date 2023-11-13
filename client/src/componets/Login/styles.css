@@ -9,12 +9,11 @@ body {
 }
 
 .form-content {
-  background: linear-gradient(98deg, #6eabf031, #60d6e8),
-    url(../../assets/hero-bg-4.jpg);
+  background: url(../../assets/online-certificate-course.svg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left center; /* Center the background image on the left side */
   background-attachment: fixed;
-  background-size: cover;
+  background-size: auto 130%;
 }
 
 fieldset {
@@ -30,5 +29,5 @@ input[type="password"] {
 
 .herocontainer {
   margin-top: 80px;
-  height:calc(100vh - 200px);
+  height: calc(110vh - 258px);
 }

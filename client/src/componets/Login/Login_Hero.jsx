@@ -131,8 +131,6 @@ const Login_Hero = () => {
         <div className="form-content   gap-[10rem] overflow-hidden w-full h-[87vh] flex justify-between items-center">
           <div className="text w-full flex justify-center">
             <h1 className="capitalize w-full flex font-quicksand text-[2rem] font-bold ml-[2rem] text-yellow-50 text-center w-[20rem]">
-              Powering your career by getting scholarships to your dream
-              university around the world.
             </h1>
           </div>
           <div className="form flex relative bg-white w-full flex-col rounded-[1rem] items-center p-3  mr-5 mt-10 justify-start">
