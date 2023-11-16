@@ -3,7 +3,7 @@ import "./footer.css";
 import { BsTwitter } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { ImWhatsapp } from "react-icons/im";
-import { FaInstagram } from "react-icons/fa"; // Import Instagram icon
+import { FaInstagram, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -72,6 +72,24 @@ const Footer = () => {
         <button>Subscribe</button>
       </div>
 
+      <div className="address-section">
+        <h3>Visit Us</h3>
+        <ul className="address-info">
+          <li>
+            <a href="#">
+              <FaMapMarkerAlt />
+              <span>123 Street, Cityville, Country</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <FaEnvelope />
+              <span>Email: info@example.com</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div className="footer_socials">
         <a
           href="https://www.linkedin.com/in/usaamah-ishola-503703208/"
@@ -83,7 +101,7 @@ const Footer = () => {
         <a href="https://twitter.com" target="_blank" rel="noreferrer">
           <BsTwitter />
         </a>
-        <a href="https://wa.me/+2348068751203" target="_blank">
+        <a href="https://wa.me/+1234567890" target="_blank" rel="noreferrer">
           <ImWhatsapp />
         </a>
         <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
