@@ -5,6 +5,7 @@ import Goal from "./goal/Goal";
 import N_u from "./News and update/N_u";
 import Testinonial from "./reviews/rewies";
 import Footer from "./footer/footer";
+import HowItWorks from "./works/HowItWorks"; // Import the HowItWorks component
 import "./Home.css";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <Nav />
       <Homeslide />
       <Goal />
+      <HowItWorks /> {/* Include the HowItWorks component here */}
       <N_u />
       <Testinonial />
       <Footer />
