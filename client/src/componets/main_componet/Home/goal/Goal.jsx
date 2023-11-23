@@ -44,8 +44,11 @@ const Goal = () => {
   }, []);
 
   const handleSeeMore = () => {
-    // Add functionality for the See More button click
-    // For example: Show more content, navigate to another section, etc.
+    const arrow = document.querySelector('.arrow');
+    arrow.classList.add('moveForward');
+    setTimeout(() => {
+      arrow.classList.remove('moveForward'); // Reset the arrow after a short delay
+    }, 500); // Adjust the delay time if needed
     console.log('See More clicked!');
   };
 
@@ -94,7 +97,7 @@ const Goal = () => {
         {/* See More Button */}
         <div className="see-more flex items-center justify-center mt-8">
           <button className="see-more-button" onClick={handleSeeMore}>
-            See More <span className="arrow">&#187;</span>
+            See More <span className="arrow">&#10148;</span>
           </button>
         </div>
       </div>

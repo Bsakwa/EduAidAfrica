@@ -1,7 +1,7 @@
 /* goal.css */
 
 .hero {
-  background: linear-gradient(to right, #141e30, #243b55);
+  background: #001f3f; 
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -78,25 +78,11 @@
 
 .see-more-button:hover {
   background-color: #0056b3;
+  transition: background-color 0.3s ease-in-out;
+  transform: 
 }
 
-/* Arrow Style */
 .arrow {
-  margin-left: 20px;
-  margin-top: 5px;
-  font-size: 28px; /* Increase the size of the arrow */
-  animation: moveArrow 1.2s linear infinite; /* Continuously move the arrow */
-}
-
-/* Arrow Animation */
-@keyframes moveArrow {
-  0% {
-    margin-left: 0;
-  }
-  50% {
-    margin-left: 10px;
-  }
-  100% {
-    margin-left: 0;
-  }
+  font-size: 20px; /* Adjust the size of the arrow */
+  transition: transform 0.3s ease; /* Add transition for smoother movement */
 }
