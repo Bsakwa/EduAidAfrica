@@ -2,10 +2,11 @@ import React from "react";
 import Homeslide from "./hs/hs";
 import Nav from "../Nav/Nav";
 import Goal from "./goal/Goal";
-import N_u from "./News and update/N_u";
+import N_u from "./featured/N_u";
 import Footer from "./footer/footer";
 import HowItWorks from "./works/HowItWorks";
-import About from "./about/About"; // Import the About component
+import About from "./about/About";
+import FAQSection from "./faq/faq"; // Import the FAQSection component
 import "./Home.css";
 
 const Home = () => {
@@ -15,8 +16,9 @@ const Home = () => {
       <Homeslide />
       <Goal />
       <HowItWorks />
-      <About /> {/* Include the About component here */}
+      <About />
       <N_u />
+      <FAQSection /> {/* Include the FAQSection component here */}
       <Footer />
     </div>
   );
