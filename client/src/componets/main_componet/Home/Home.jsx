@@ -6,7 +6,9 @@ import N_u from "./featured/N_u";
 import Footer from "./footer/footer";
 import HowItWorks from "./works/HowItWorks";
 import About from "./about/About";
-import FAQSection from "./faq/faq"; // Import the FAQSection component
+import FAQSection from "./faq/faq";
+import Testimonial from "./reviews/reviews";
+import Sponsors from "./sponsors/sponsors";
 import "./Home.css";
 
 const Home = () => {
@@ -18,7 +20,9 @@ const Home = () => {
       <HowItWorks />
       <About />
       <N_u />
-      <FAQSection /> {/* Include the FAQSection component here */}
+      <Testimonial />
+      <FAQSection />
+      <Sponsors />
       <Footer />
     </div>
   );

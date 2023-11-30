@@ -5,8 +5,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 20px;
-  background: linear-gradient(135deg, #1A237E, #0D47A1); 
+  padding: 20px; 
   color: white;
 }
 
