@@ -1,7 +1,0 @@
-.header span::after{
-      content: '';
-      display: flex;
-      width: 20px;
-      height: 3px;
-      color: blue;
-}
